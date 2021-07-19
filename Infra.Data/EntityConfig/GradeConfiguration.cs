@@ -3,23 +3,18 @@ using Domain.Entities;
 
 namespace Infra.Data.EntityConfig
 {
-    public class StudentConfiguration : EntityTypeConfiguration<Student>
+    public class GradeConfiguration : EntityTypeConfiguration<Grade>
     {
-        public StudentConfiguration()
+        public GradeConfiguration()
         {
-            HasKey(x => x.StudentId);
+            HasKey(x => x.GradeId);
 
-            Property(x => x.Name)
+            Property(x => x.SubjectGrade)
             .IsRequired();
 
-            Property(x => x.Birthday)
-            .IsRequired();
-
-            Property(x => x.Email)
-            .IsRequired();
-
-            Property(x => x.Telephone)
-            .IsRequired();
+            HasRequired(x => x.Student)
+            .WithMany()
+            .HasForeignKey(x => x.StudentId);
 
         }
     }

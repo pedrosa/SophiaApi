@@ -57,8 +57,9 @@
     <Compile Include="EntityConfig\TeacherConfiguration.cs" />
     <Compile Include="EntityConfig\CourseConfiguration.cs" />
     <Compile Include="EntityConfig\StudentConfiguration.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\MigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\SophiaApi.Domain.csproj">
@@ -66,9 +67,7 @@
       <Name>SophiaApi.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

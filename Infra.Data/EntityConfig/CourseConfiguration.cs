@@ -12,6 +12,10 @@ namespace Infra.Data.EntityConfig
             Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(130);
+
+            HasRequired(x => x.Student)
+            .WithMany()
+            .HasForeignKey(x => x.StudentId);
         }
     }
 }

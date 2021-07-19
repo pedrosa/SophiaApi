@@ -20,9 +20,12 @@ namespace Infra.Data.EntityConfig
             .WithMany()
             .HasForeignKey(x => x.TeacherId);
 
-            HasRequired(x => x.Grade)
+            HasRequired(x => x.Course)
             .WithMany()
-            .HasForeignKey(x => x.SubjectGrade);
+            .HasForeignKey(x => x.CourseId);
+
+            HasRequired(x => x.Grade)
+            .WithRequiredDependent();
 
         }
     }

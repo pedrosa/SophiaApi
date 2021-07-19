@@ -3,11 +3,11 @@ using Domain.Entities;
 
 namespace Infra.Data.EntityConfig
 {
-    public class StudentConfiguration : EntityTypeConfiguration<Student>
+    public class TeacherConfiguration : EntityTypeConfiguration<Teacher>
     {
-        public StudentConfiguration()
+        public TeacherConfiguration()
         {
-            HasKey(x => x.StudentId);
+            HasKey(x => x.TeacherId);
 
             Property(x => x.Name)
             .IsRequired();
@@ -15,12 +15,8 @@ namespace Infra.Data.EntityConfig
             Property(x => x.Birthday)
             .IsRequired();
 
-            Property(x => x.Email)
-            .IsRequired();
-
-            Property(x => x.Telephone)
-            .IsRequired();
-
+            Property(x => x.Salary)
+            .IsRequired();            
         }
     }
 }

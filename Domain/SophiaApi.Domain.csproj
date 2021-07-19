@@ -36,10 +36,11 @@
     <Compile Include="Entities\Subject.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Interfaces\IStudentRepository.cs" />
+    <Compile Include="Interfaces\IRepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

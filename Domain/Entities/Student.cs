@@ -10,11 +10,12 @@ namespace Domain.Entities
     {
         public int StudentId { get; set; }
         public string Name { get; set; }
-        public Course Course { get; set; }
         public DateTime Birthday { get; set; }
-        public string Email { get; set; }
-        public int Telephone { get; set; }
-        public string Address { get; set; }
+        public int CourseId { get; set; }
+        public Course Course { get; set; }
+        public decimal GradeId { get; set; }
+        public IEnumerable<Grade> Grades { get; set; }
+        public int SubjectId { get; set; }
         public IEnumerable<Subject> Subjects { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Domain.Entities;
+using Infra.Data.EntityConfig;
 
 namespace Infra.Data.Context
 {
@@ -8,12 +9,17 @@ namespace Infra.Data.Context
     {
 
         public ModelContext()
-            : base("Sophia")
+            : base("SophiaBase")
         {
 
         }
 
+        public DbSet<Subject> Subjects { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -29,6 +35,12 @@ namespace Infra.Data.Context
 
             modelBuilder.Properties<string>()
                 .Configure(p => p.HasMaxLength(90));
+
+            modelBuilder.Configurations.Add(new StudentConfiguration());
+            modelBuilder.Configurations.Add(new CourseConfiguration());
+            modelBuilder.Configurations.Add(new TeacherConfiguration());
+            modelBuilder.Configurations.Add(new GradeConfiguration());
+            modelBuilder.Configurations.Add(new SubjectConfiguration());
         }
     }
 }

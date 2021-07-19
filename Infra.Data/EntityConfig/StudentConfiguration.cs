@@ -10,17 +10,11 @@ namespace Infra.Data.EntityConfig
             HasKey(x => x.StudentId);
 
             Property(x => x.Name)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(100);
 
             Property(x => x.Birthday)
             .IsRequired();
-
-            Property(x => x.Email)
-            .IsRequired();
-
-            Property(x => x.Telephone)
-            .IsRequired();
-
         }
     }
 }

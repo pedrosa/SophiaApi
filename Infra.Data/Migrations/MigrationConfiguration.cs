@@ -5,9 +5,9 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Context.ModelContext>
+    internal sealed class MigrationConfiguration : DbMigrationsConfiguration<Context.ModelContext>
     {
-        public Configuration()
+        public MigrationConfiguration()
         {
             AutomaticMigrationsEnabled = true;
         }
