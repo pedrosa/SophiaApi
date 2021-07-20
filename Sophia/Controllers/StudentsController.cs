@@ -1,37 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Application.Interface;
 using AutoMapper;
 using Domain.Entities;
-using Infra.Data.Repositories;
 using Sophia.ViewModels;
 
 namespace Sophia.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly StudentRepository _studentRepository = new StudentRepository();
+        private readonly IStudentAppService _studentApp;
+        public StudentsController(IStudentAppService studentApp)
+        {
+            _studentApp = studentApp;
+        }
 
         // GET: Students
         public ActionResult Index()
         {
-            var studentViewModel = Mapper.Map<IEnumerable<Student>, IEnumerable<StudentViewModel>>(_studentRepository.GetAll());
+            var studentViewModel = Mapper.Map<IEnumerable<Student>, IEnumerable<StudentViewModel>>(_studentApp.GetAll());
             return View(studentViewModel);
         }
-
-        //public ActionResult Especiais()
-        //{
-        //    var studentViewModel = Mapper.Map<IEnumerable<Student>, IEnumerable<StudentViewModel>>(_studentRepository.());
-
-        //    return View(studentViewModel);
-        //}
 
         // GET: Students/Details/5
         public ActionResult Details(int id)
         {
-            var student = _studentRepository.GetById(id);
+            var student = _studentApp.GetById(id);
             var studentViewModel = Mapper.Map<Student, StudentViewModel>(student);
 
             return View(studentViewModel);
@@ -51,7 +45,7 @@ namespace Sophia.Controllers
             if (ModelState.IsValid)
             {
                 var studentDomain = Mapper.Map<StudentViewModel, Student>(student);
-                _studentRepository.Add(studentDomain);
+                _studentApp.Add(studentDomain);
 
                 return RedirectToAction("Index");
             }
@@ -62,7 +56,7 @@ namespace Sophia.Controllers
         // GET: Students/Edit/5
         public ActionResult Edit(int id)
         {
-            var student = _studentRepository.GetById(id);
+            var student = _studentApp.GetById(id);
             var studentViewModel = Mapper.Map<Student, StudentViewModel>(student);
 
             return View(studentViewModel);
@@ -76,7 +70,7 @@ namespace Sophia.Controllers
             if (ModelState.IsValid)
             {
                 var studentDomain = Mapper.Map<StudentViewModel, Student>(student);
-                _studentRepository.Update(studentDomain);
+                _studentApp.Update(studentDomain);
 
                 return RedirectToAction("Index");
             }
@@ -87,7 +81,7 @@ namespace Sophia.Controllers
         // GET: Students/Delete/5
         public ActionResult Delete(int id)
         {
-            var student = _studentRepository.GetById(id);
+            var student = _studentApp.GetById(id);
             var studentViewModel = Mapper.Map<Student, StudentViewModel>(student);
 
             return View(studentViewModel);
@@ -98,8 +92,8 @@ namespace Sophia.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var student = _studentRepository.GetById(id);
-            _studentRepository.Remove(student);
+            var student = _studentApp.GetById(id);
+            _studentApp.Remove(student);
 
             return RedirectToAction("Index");
         }

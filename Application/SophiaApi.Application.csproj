@@ -41,7 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppServiceBase.cs" />
+    <Compile Include="Interface\IAppServiceBase.cs" />
+    <Compile Include="Interface\ISubjectAppService.cs" />
+    <Compile Include="Interface\IStudentAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StudentAppService.cs" />
+    <Compile Include="SubjectAppService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\SophiaApi.Domain.csproj">
+      <Project>{302a9f27-e2f8-440b-96d8-71def876f81b}</Project>
+      <Name>SophiaApi.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

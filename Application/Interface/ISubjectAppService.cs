@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 
-namespace Domain.Interfaces
+namespace Application.Interface
 {
-    public interface ISubjectRepository : IRepositoryBase<Subject>
+    public interface ISubjectAppService : IAppServiceBase<Subject>
     {
         IEnumerable<Subject> SearchByName(string name);
     }
