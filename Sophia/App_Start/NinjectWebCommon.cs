@@ -15,14 +15,13 @@ namespace Sophia.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Web.Common.WebHost;
 
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
-        /// Starts the application.
+        /// Starts the application
         /// </summary>
         public static void Start() 
         {
@@ -30,7 +29,7 @@ namespace Sophia.App_Start
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-
+        
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -38,7 +37,7 @@ namespace Sophia.App_Start
         {
             bootstrapper.ShutDown();
         }
-
+        
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -50,6 +49,7 @@ namespace Sophia.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+
                 RegisterServices(kernel);
                 return kernel;
             }
@@ -68,16 +68,13 @@ namespace Sophia.App_Start
         {
             kernel.Bind(typeof(IAppServiceBase<>)).To(typeof(AppServiceBase<>));
             kernel.Bind<IStudentAppService>().To<StudentAppService>();
-            kernel.Bind<ISubjectAppService>().To<SubjectAppService>();
-
+            kernel.Bind<ISubjectAppService>().To<SubjectAppService>(); 
             kernel.Bind(typeof(IServiceBase<>)).To(typeof(ServiceBase<>));
             kernel.Bind<IStudentService>().To<StudentService>();
-            kernel.Bind<ISubjectService>().To<SubjectService>();
-
+            kernel.Bind<SubjectService>().To<SubjectService>(); 
             kernel.Bind(typeof(IRepositoryBase<>)).To(typeof(RepositoryBase<>));
             kernel.Bind<IStudentRepository>().To<StudentRepository>();
             kernel.Bind<ISubjectRepository>().To<SubjectRepository>();
-
-        }
+        }        
     }
 }
